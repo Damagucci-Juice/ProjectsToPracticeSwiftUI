@@ -15,9 +15,12 @@ struct ContentView: View {
         "Poland", "Russia", "Spain",
         "UK", "US"
     ].shuffled()
+    @State private var scores = 0
     @State private var correctAnswer = Int.random(in: 0...2)
     @State private var scoreTitle = ""
     @State private var showingScore = false
+    @State private var gameCount = 0
+    @State private var showingFinalScore = false
     
     var body: some View {
         ZStack {
@@ -25,7 +28,7 @@ struct ContentView: View {
                 .init(color: Color(red: 0.1, green: 0.2, blue: 0.45), location: 0.3),
                 .init(color: Color(red: 0.76, green: 0.15, blue: 0.26), location: 0.3),
             ], center: .top, startRadius: 200, endRadius: 400)
-                .ignoresSafeArea()
+            .ignoresSafeArea()
             VStack {
                 Spacer()
                 
@@ -61,10 +64,14 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 
-                Text("Score: ???")
+                Text("Score: \(scores)")
                     .foregroundColor(.white)
                     .font(.title.bold())
-                
+
+                Text("Game Count: \(gameCount)")
+                    .foregroundColor(.white)
+                    .font(.title.bold())
+
                 Spacer()
             }
             .padding()
@@ -72,20 +79,42 @@ struct ContentView: View {
         .alert(scoreTitle, isPresented: $showingScore) {
             Button("continue", action: askQuestion)
         } message: {
-            Text("your score is ???")
+            Text("your score is \(scores)")
+        }
+        .alert("game over", isPresented: $showingFinalScore) {
+            Button("restart", role: .cancel, action: restartGame)
+        } message: {
+            Text("Your final score is \(scores)")
         }
     }
     
     private func checkAnswer(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct"
+            scores += 1
         } else {
-            scoreTitle = "Wrong"
+            scoreTitle = """
+                        Wrong!
+                        That's the flag of \(countries[number])
+                        """
+            if scores > 0 {
+                scores -= 1
+            }
         }
-        
-        showingScore = true
+
+        gameCount += 1
+        if gameCount == 8 {
+            showingFinalScore = true
+        } else {
+            showingScore = true
+        }
     }
-    
+
+    private func restartGame() {
+        askQuestion()
+        scores = 0
+        gameCount = 0
+    }
     
     private func askQuestion() {
         countries.shuffle()

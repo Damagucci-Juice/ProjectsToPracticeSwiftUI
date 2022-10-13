@@ -42,6 +42,8 @@ struct ContentView: View {
         }
     }
     
+    private let date: Date = .now
+    
     var body: some View {
         NavigationView {
             Form {
@@ -68,7 +70,7 @@ struct ContentView: View {
                         }
                     }
                 } header: {
-                    Text("Output")
+                    Text(date.formatted())
                 }
             }
             .navigationTitle("Conversion - Length")
