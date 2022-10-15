@@ -8,7 +8,9 @@
 import SwiftUI
 
 enum RockScissorsPaper: String, CaseIterable {
-    case rock, paper, scissors
+    case rock = "✊"
+    case paper = "✋"
+    case scissors = "👉"
 
     static func randomElement() -> Self {
         return Self.allCases.randomElement() ?? .rock
@@ -60,7 +62,8 @@ struct ContentView: View {
                     .font(.title)
                 Text("to")
                     .font(.title)
-                LargeImage(source: randomMove.rawValue)
+                Text(randomMove.rawValue)
+                    .bigText()
             }
             .padding(.top, 10)
 
@@ -68,7 +71,8 @@ struct ContentView: View {
                 Button {
                     calculateScore(move)
                 } label: {
-                    LargeImage(source: move.rawValue)
+                    Text(move.rawValue)
+                        .bigText()
                 }
             }
 
