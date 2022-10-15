@@ -93,6 +93,7 @@ struct ContentView: View {
         }
         isWin.toggle()
         gameCount += 1
+        randomMove = RockScissorsPaper.randomElement()
         if gameCount == 10 {
             showAlert.toggle()
         }
