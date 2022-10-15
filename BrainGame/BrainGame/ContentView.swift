@@ -44,7 +44,7 @@ struct ContentView: View {
     @State private var scores: Int = 0
     @State private var showAlert = false
     @State private var gameCount = 0
-    var randomMove = RockScissorsPaper.randomElement()
+    @State var randomMove = RockScissorsPaper.randomElement()
 
     var body: some View {
         VStack(alignment: .center) {
@@ -89,16 +89,16 @@ struct ContentView: View {
         }
         isWin.toggle()
         gameCount += 1
-        if gameCount == 1 {
+        if gameCount == 10 {
             showAlert.toggle()
         }
     }
 
-    private func resetGame() {
+    func resetGame() {
         gameCount = 0
         scores = 0
-        randomMove = RockScissorsPaper.randomElement()
         isWin = Bool.random()
+        randomMove = RockScissorsPaper.randomElement()
     }
 }
 
