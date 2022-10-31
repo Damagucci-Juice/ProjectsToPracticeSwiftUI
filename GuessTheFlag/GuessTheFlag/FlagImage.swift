@@ -15,6 +15,7 @@ struct FlagImage: View {
             .renderingMode(.original)
             .clipShape(Capsule())
             .shadow(radius: 5)
+        
     }
 }
 

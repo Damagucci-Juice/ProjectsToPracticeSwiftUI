@@ -21,6 +21,8 @@ struct ContentView: View {
     @State private var showingScore = false
     @State private var gameCount = 0
     @State private var showingFinalScore = false
+    @State private var animationAmount = 0.0
+    @State private var isTappedArray: [Bool] = [true, true, true]
     
     var body: some View {
         ZStack {
@@ -48,8 +50,21 @@ struct ContentView: View {
                     ForEach(0..<3) { number in
                         Button {
                             checkAnswer(number)
+                            withAnimation {
+                                animationAmount += 360
+                                for i in 0..<3 {
+                                    if i != number {
+                                        isTappedArray[i].toggle()
+                                    }
+                                }
+                            }
                         } label: {
                             FlagImage(country: countries[number])
+                                .rotation3DEffect(.degrees(animationAmount), axis: (x: 0, y: 1, z: 0))
+                                .blur(radius: isTappedArray[number] ? 0 : 3)
+                                .scaleEffect(x: isTappedArray[number] ? 1 : 0.5,
+                                             y: isTappedArray[number] ? 1 : 0.5)
+                                .animation(.default, value: isTappedArray[number])
                         }
                     }
                 }
@@ -116,6 +131,7 @@ struct ContentView: View {
     private func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        isTappedArray = [true, true, true]
     }
 }
 
