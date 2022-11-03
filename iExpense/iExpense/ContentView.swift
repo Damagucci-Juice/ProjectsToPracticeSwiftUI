@@ -15,7 +15,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 Section("Personal") {
-                    ForEach(expenses.personalExpenses) { item in
+                    ForEach(expenses.personalItems) { item in
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(item.name)
@@ -29,11 +29,11 @@ struct ContentView: View {
                             .foregroundColor(item.amount >= 100000.0 ? .red : (item.amount <= 1000.0 ? .green : .primary))
                         }
                     }
-                    .onDelete(perform: removeItems)
+                    .onDelete(perform: removePersonalItems)
                 }
 
                 Section("Bussiness") {
-                    ForEach(expenses.bussinessExpenses) { item in
+                    ForEach(expenses.bussinessItems) { item in
                         HStack {
                             VStack(alignment: .leading) {
                                 Text(item.name)
@@ -47,7 +47,7 @@ struct ContentView: View {
                             .foregroundColor(item.amount >= 100000.0 ? .red : (item.amount <= 1000.0 ? .green : .primary))
                         }
                     }
-                    .onDelete(perform: removeItems)
+                    .onDelete(perform: removeBussinessItems)
                 }
             }
             .navigationTitle("iExpense")
@@ -64,8 +64,12 @@ struct ContentView: View {
         }
     }
 
-    private func removeItems(at offSet: IndexSet) {
-        expenses.items.remove(atOffsets: offSet)
+    private func removeBussinessItems(at offSet: IndexSet) {
+        expenses.bussinessItems.remove(atOffsets: offSet)
+    }
+
+    private func removePersonalItems(at offSet: IndexSet) {
+        expenses.personalItems.remove(atOffsets: offSet)
     }
 }
 
