@@ -1,6 +1,6 @@
 # ProjectsToPracticeSwiftUI
 
-## Day 38
+## Day 38 - iExpenses(가계부앱)
 - UserDefault, 
 - 서로 다른 뷰에서 같은 데이터를 보기 @Published, ObservableObject, @StateObject
 
