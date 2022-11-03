@@ -14,19 +14,41 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(expenses.items) { item in
-                    HStack {
-                        VStack {
-                            Text(item.name)
-                                .font(.headline)
-                            Text(item.type)
-                        }
+                Section("Personal") {
+                    ForEach(expenses.personalExpenses) { item in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(item.name)
+                                    .font(.headline)
+                                Text(item.type)
+                            }
 
-                        Spacer()
-                        Text(item.amount, format: .currency(code: "USD"))
+                            Spacer()
+                            Text(item.amount,
+                                 format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                            .foregroundColor(item.amount >= 100000.0 ? .red : (item.amount <= 1000.0 ? .green : .primary))
+                        }
                     }
+                    .onDelete(perform: removeItems)
                 }
-                .onDelete(perform: removeItems)
+
+                Section("Bussiness") {
+                    ForEach(expenses.bussinessExpenses) { item in
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text(item.name)
+                                    .font(.headline)
+                                Text(item.type)
+                            }
+
+                            Spacer()
+                            Text(item.amount,
+                                 format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                            .foregroundColor(item.amount >= 100000.0 ? .red : (item.amount <= 1000.0 ? .green : .primary))
+                        }
+                    }
+                    .onDelete(perform: removeItems)
+                }
             }
             .navigationTitle("iExpense")
             .toolbar {
