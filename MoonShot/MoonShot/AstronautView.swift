@@ -12,10 +12,17 @@ struct AstronautView: View {
 
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(alignment: .leading) {
                 Image(astronaut.id)
                     .resizable()
                     .scaledToFit()
+
+                ThickDivider()
+                    .padding(.horizontal)
+
+                Text("Description")
+                    .smallTitle()
+                    .padding(.horizontal)
 
                 Text(astronaut.description)
                     .padding()
