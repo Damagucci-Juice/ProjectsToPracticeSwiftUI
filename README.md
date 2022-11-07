@@ -14,5 +14,6 @@
 - GeometryReader, Image Resizable, scaleToFit, scaleToFill
 - NavigationLink, preferredColorScheme(.dark)
 
-![moonshot앱데모](https://user-images.githubusercontent.com/50472122/199977758-d8f7050a-38df-46a0-8a6d-ad95e9fb68ed.gif)
+![moonShot2](https://user-images.githubusercontent.com/50472122/200252095-aebc3499-255a-49b2-88ed-1753ea1bd880.gif)
 
+![image](https://user-images.githubusercontent.com/50472122/200252238-fa37baf4-15d1-4a53-bd71-fdac674f8349.png)
