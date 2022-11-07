@@ -16,4 +16,5 @@
 
 ![moonShot2](https://user-images.githubusercontent.com/50472122/200252095-aebc3499-255a-49b2-88ed-1753ea1bd880.gif)
 
-![image](https://user-images.githubusercontent.com/50472122/200252238-fa37baf4-15d1-4a53-bd71-fdac674f8349.png)
+<img src="https://user-images.githubusercontent.com/50472122/200252238-fa37baf4-15d1-4a53-bd71-fdac674f8349.png" alt="drawing" width="250"/>
+
