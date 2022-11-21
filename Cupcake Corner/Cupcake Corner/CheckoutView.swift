@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CheckoutView: View {
-    @ObservedObject var order: Order
+    @Binding var order: Order
 
     var body: some View {
         ScrollView {
@@ -35,7 +35,8 @@ struct CheckoutView: View {
 }
 
 struct CheckoutView_Previews: PreviewProvider {
+    @State static var order = Order()
     static var previews: some View {
-        CheckoutView(order: Order())
+        CheckoutView(order: $order)
     }
 }
