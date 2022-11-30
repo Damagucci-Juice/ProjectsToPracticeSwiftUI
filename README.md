@@ -25,3 +25,11 @@
 ![image](https://user-images.githubusercontent.com/50472122/201473744-80c44209-0ca0-470b-960a-6b77cd869c0c.png)
 ![image](https://user-images.githubusercontent.com/50472122/201473749-84f833e3-62f8-4350-9592-72b56f77894f.png)
 ![image](https://user-images.githubusercontent.com/50472122/201473758-74f8c7fd-0d8f-42eb-ad4e-2db7492ffed2.png)
+
+## Day56 - Bookworm (독서 기록 앱)
+
+- CoreData, CustomView(별표시)
+
+![image](https://user-images.githubusercontent.com/50472122/204706026-18c49d9f-0f13-4532-8b2d-42ffabc98111.png)
+![image](https://user-images.githubusercontent.com/50472122/204706032-8ad7f0cc-e7f6-496a-86d9-aae4e7a36dc6.png)
+![image](https://user-images.githubusercontent.com/50472122/204706088-36acd955-586f-4492-91fb-beb70cbfcb43.png)
