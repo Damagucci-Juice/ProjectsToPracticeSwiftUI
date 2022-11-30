@@ -29,6 +29,7 @@ struct ContentView: View {
                             VStack(alignment: .leading) {
                                 Text(book.title ?? "Unknown Title")
                                     .font(.headline)
+                                    .foregroundColor(book.rating < 2 ? .red : .primary)
                                 Text(book.author ?? "Unknown Author")
                                     .foregroundColor(.secondary)
                             }
@@ -59,14 +60,9 @@ struct ContentView: View {
     
     func deleteBooks(at offsets: IndexSet) {
         for offset in offsets {
-            // find this book in our fetch request
             let book = books[offset]
-
-            // delete it from the context
             moc.delete(book)
         }
-
-        // save the context
         try? moc.save()
     }
 }
