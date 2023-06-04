@@ -16,6 +16,10 @@
 		BE677F7F2A2ACA690091FBC0 /* Singer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677F7D2A2ACA690091FBC0 /* Singer+CoreDataClass.swift */; };
 		BE677F802A2ACA690091FBC0 /* Singer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677F7E2A2ACA690091FBC0 /* Singer+CoreDataProperties.swift */; };
 		BE677F822A2ACE270091FBC0 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677F812A2ACE270091FBC0 /* FilteredList.swift */; };
+		BE677F872A2AE96F0091FBC0 /* Country+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677F832A2AE96F0091FBC0 /* Country+CoreDataClass.swift */; };
+		BE677F882A2AE96F0091FBC0 /* Country+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677F842A2AE96F0091FBC0 /* Country+CoreDataProperties.swift */; };
+		BE677F892A2AE96F0091FBC0 /* Candy+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677F852A2AE96F0091FBC0 /* Candy+CoreDataClass.swift */; };
+		BE677F8A2A2AE96F0091FBC0 /* Candy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677F862A2AE96F0091FBC0 /* Candy+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		BE677F7D2A2ACA690091FBC0 /* Singer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BE677F7E2A2ACA690091FBC0 /* Singer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BE677F812A2ACE270091FBC0 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
+		BE677F832A2AE96F0091FBC0 /* Country+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BE677F842A2AE96F0091FBC0 /* Country+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BE677F852A2AE96F0091FBC0 /* Candy+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candy+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BE677F862A2AE96F0091FBC0 /* Candy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Candy+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +53,10 @@
 		BE677F5E2A29CD700091FBC0 = {
 			isa = PBXGroup;
 			children = (
-				BE677F812A2ACE270091FBC0 /* FilteredList.swift */,
+				BE677F832A2AE96F0091FBC0 /* Country+CoreDataClass.swift */,
+				BE677F842A2AE96F0091FBC0 /* Country+CoreDataProperties.swift */,
+				BE677F852A2AE96F0091FBC0 /* Candy+CoreDataClass.swift */,
+				BE677F862A2AE96F0091FBC0 /* Candy+CoreDataProperties.swift */,
 				BE677F7D2A2ACA690091FBC0 /* Singer+CoreDataClass.swift */,
 				BE677F7E2A2ACA690091FBC0 /* Singer+CoreDataProperties.swift */,
 				BE677F692A29CD700091FBC0 /* CoreDataProject */,
@@ -66,6 +77,7 @@
 			children = (
 				BE677F6A2A29CD700091FBC0 /* CoreDataProjectApp.swift */,
 				BE677F6C2A29CD700091FBC0 /* ContentView.swift */,
+				BE677F812A2ACE270091FBC0 /* FilteredList.swift */,
 				BE677F782A29CDBA0091FBC0 /* DataController.swift */,
 				BE677F7A2A29CDF50091FBC0 /* CoreDataProject.xcdatamodeld */,
 				BE677F6E2A29CD710091FBC0 /* Assets.xcassets */,
@@ -153,12 +165,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE677F6D2A29CD700091FBC0 /* ContentView.swift in Sources */,
+				BE677F892A2AE96F0091FBC0 /* Candy+CoreDataClass.swift in Sources */,
+				BE677F8A2A2AE96F0091FBC0 /* Candy+CoreDataProperties.swift in Sources */,
 				BE677F802A2ACA690091FBC0 /* Singer+CoreDataProperties.swift in Sources */,
 				BE677F792A29CDBA0091FBC0 /* DataController.swift in Sources */,
 				BE677F7F2A2ACA690091FBC0 /* Singer+CoreDataClass.swift in Sources */,
 				BE677F7C2A29CDF50091FBC0 /* CoreDataProject.xcdatamodeld in Sources */,
 				BE677F6B2A29CD700091FBC0 /* CoreDataProjectApp.swift in Sources */,
+				BE677F872A2AE96F0091FBC0 /* Country+CoreDataClass.swift in Sources */,
 				BE677F822A2ACE270091FBC0 /* FilteredList.swift in Sources */,
+				BE677F882A2AE96F0091FBC0 /* Country+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
