@@ -9,11 +9,11 @@ import Foundation
 
 class DataModel: ObservableObject {
     
-    static let shared = DataModel()
-    
     @Published var users: [User] = []
+    let dataConverter: DataConverter
     
-    init() {
+    init(dataConverter: DataConverter) {
+        self.dataConverter = dataConverter
         Task {
             if let users = try? await loadUser() {
                 self.users = users
@@ -25,20 +25,25 @@ class DataModel: ObservableObject {
 
 func loadUser() async throws -> [User] {
     guard let url = URL(string: "https://www.hackingwithswift.com/samples/friendface.json") else { throw NetworkError.urlInvalid }
+    
+    let data: Data
+    
     do {
-        let (data, _) = try await URLSession.shared.data(from: url)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        
-        do {
-            let users = try decoder.decode([User].self, from: data)
-            return users
-        } catch {
-            throw NetworkError.decodingFailed
-        }
+        let (remoteData, _) = try await URLSession.shared.data(from: url)
+        data = remoteData
     } catch {
         throw NetworkError.fetchFailed
     }
+    
+    do {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let users = try decoder.decode([User].self, from: data)
+        return users
+    } catch {
+        throw NetworkError.decodingFailed
+    }
+    
 }
 
 

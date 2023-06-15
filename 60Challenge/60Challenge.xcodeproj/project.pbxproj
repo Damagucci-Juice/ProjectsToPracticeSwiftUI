@@ -17,6 +17,13 @@
 		BE677FAC2A2C7CE10091FBC0 /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677FAB2A2C7CE10091FBC0 /* UserRow.swift */; };
 		BE677FAE2A2C81F30091FBC0 /* FriendRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677FAD2A2C81F30091FBC0 /* FriendRow.swift */; };
 		BE677FB02A2C82FD0091FBC0 /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677FAF2A2C82FD0091FBC0 /* UserDetail.swift */; };
+		BE677FB32A2C93500091FBC0 /* ChallengeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BE677FB12A2C93500091FBC0 /* ChallengeModel.xcdatamodeld */; };
+		BE677FB62A2C947F0091FBC0 /* CachedUser+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677FB42A2C947F0091FBC0 /* CachedUser+CoreDataClass.swift */; };
+		BE677FB72A2C947F0091FBC0 /* CachedUser+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677FB52A2C947F0091FBC0 /* CachedUser+CoreDataProperties.swift */; };
+		BE677FBA2A2C95040091FBC0 /* CachedFriend+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677FB82A2C95040091FBC0 /* CachedFriend+CoreDataClass.swift */; };
+		BE677FBB2A2C95040091FBC0 /* CachedFriend+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677FB92A2C95040091FBC0 /* CachedFriend+CoreDataProperties.swift */; };
+		BE677FBD2A2C986F0091FBC0 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677FBC2A2C986F0091FBC0 /* DataController.swift */; };
+		BE677FBF2A2C99130091FBC0 /* DataConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE677FBE2A2C99130091FBC0 /* DataConverter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +38,13 @@
 		BE677FAB2A2C7CE10091FBC0 /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 		BE677FAD2A2C81F30091FBC0 /* FriendRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRow.swift; sourceTree = "<group>"; };
 		BE677FAF2A2C82FD0091FBC0 /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
+		BE677FB22A2C93500091FBC0 /* ChallengeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ChallengeModel.xcdatamodel; sourceTree = "<group>"; };
+		BE677FB42A2C947F0091FBC0 /* CachedUser+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CachedUser+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BE677FB52A2C947F0091FBC0 /* CachedUser+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CachedUser+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BE677FB82A2C95040091FBC0 /* CachedFriend+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CachedFriend+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BE677FB92A2C95040091FBC0 /* CachedFriend+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CachedFriend+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BE677FBC2A2C986F0091FBC0 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		BE677FBE2A2C99130091FBC0 /* DataConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConverter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +61,10 @@
 		BE677F8B2A2C75250091FBC0 = {
 			isa = PBXGroup;
 			children = (
+				BE677FB82A2C95040091FBC0 /* CachedFriend+CoreDataClass.swift */,
+				BE677FB92A2C95040091FBC0 /* CachedFriend+CoreDataProperties.swift */,
+				BE677FB42A2C947F0091FBC0 /* CachedUser+CoreDataClass.swift */,
+				BE677FB52A2C947F0091FBC0 /* CachedUser+CoreDataProperties.swift */,
 				BE677F962A2C75250091FBC0 /* 60Challenge */,
 				BE677F952A2C75250091FBC0 /* Products */,
 			);
@@ -67,7 +85,10 @@
 				BE677F992A2C75250091FBC0 /* ContentView.swift */,
 				BE677FA52A2C759A0091FBC0 /* User.swift */,
 				BE677FA72A2C75AB0091FBC0 /* Friend.swift */,
+				BE677FBE2A2C99130091FBC0 /* DataConverter.swift */,
 				BE677FA92A2C75CD0091FBC0 /* DataModel.swift */,
+				BE677FBC2A2C986F0091FBC0 /* DataController.swift */,
+				BE677FB12A2C93500091FBC0 /* ChallengeModel.xcdatamodeld */,
 				BE677FAB2A2C7CE10091FBC0 /* UserRow.swift */,
 				BE677FAD2A2C81F30091FBC0 /* FriendRow.swift */,
 				BE677FAF2A2C82FD0091FBC0 /* UserDetail.swift */,
@@ -156,10 +177,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE677FAA2A2C75CD0091FBC0 /* DataModel.swift in Sources */,
+				BE677FBF2A2C99130091FBC0 /* DataConverter.swift in Sources */,
+				BE677FBB2A2C95040091FBC0 /* CachedFriend+CoreDataProperties.swift in Sources */,
 				BE677FAE2A2C81F30091FBC0 /* FriendRow.swift in Sources */,
+				BE677FB72A2C947F0091FBC0 /* CachedUser+CoreDataProperties.swift in Sources */,
+				BE677FB32A2C93500091FBC0 /* ChallengeModel.xcdatamodeld in Sources */,
 				BE677F9A2A2C75250091FBC0 /* ContentView.swift in Sources */,
 				BE677F982A2C75250091FBC0 /* _0ChallengeApp.swift in Sources */,
+				BE677FBD2A2C986F0091FBC0 /* DataController.swift in Sources */,
+				BE677FBA2A2C95040091FBC0 /* CachedFriend+CoreDataClass.swift in Sources */,
 				BE677FAC2A2C7CE10091FBC0 /* UserRow.swift in Sources */,
+				BE677FB62A2C947F0091FBC0 /* CachedUser+CoreDataClass.swift in Sources */,
 				BE677FB02A2C82FD0091FBC0 /* UserDetail.swift in Sources */,
 				BE677FA62A2C759A0091FBC0 /* User.swift in Sources */,
 				BE677FA82A2C75AB0091FBC0 /* Friend.swift in Sources */,
@@ -363,6 +391,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BE677FB12A2C93500091FBC0 /* ChallengeModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BE677FB22A2C93500091FBC0 /* ChallengeModel.xcdatamodel */,
+			);
+			currentVersion = BE677FB22A2C93500091FBC0 /* ChallengeModel.xcdatamodel */;
+			path = ChallengeModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BE677F8C2A2C75250091FBC0 /* Project object */;
 }

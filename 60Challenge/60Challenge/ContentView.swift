@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var model = DataModel.shared
+    @ObservedObject var model: DataModel
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
         NavigationView {
@@ -21,11 +22,5 @@ struct ContentView: View {
             }
             .navigationTitle("Contact")
         }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
