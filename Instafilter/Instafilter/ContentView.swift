@@ -20,7 +20,7 @@ struct ContentView: View {
     @State private var item: PhotosPickerItem?
     @State private var currentFilter: CIFilter = CIFilter.sepiaTone()
     @State private var showingFilterSheet = false
-
+    
     let context = CIContext()
     
     var body: some View {
@@ -74,7 +74,9 @@ struct ContentView: View {
                     Button("Sepia Tone") { setFilter(CIFilter.sepiaTone()) }
                     Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask()) }
                     Button("Vignette") { setFilter(CIFilter.vignette()) }
-                    Button("Cancel", role: .cancel) { }
+                    Button("AffineTile") { setFilter(CIFilter.affineTile()) }
+                    Button("BoxBlur") { setFilter(CIFilter.boxBlur()) }
+                    Button("ColorMatrix") { setFilter(CIFilter.colorMatrix()) }
                 }
             }
             .padding([.horizontal, .bottom])
@@ -96,7 +98,7 @@ struct ContentView: View {
     
     private func loadImage() {
         guard let inputImage = inputImage else { return }
-
+        
         let beginImage = CIImage(image: inputImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
         applyProcessing()
@@ -104,13 +106,13 @@ struct ContentView: View {
     
     private func applyProcessing() {
         let inputKeys = currentFilter.inputKeys
-
+        
         if inputKeys.contains(kCIInputIntensityKey) { currentFilter.setValue(filterIntensity, forKey: kCIInputIntensityKey) }
         if inputKeys.contains(kCIInputRadiusKey) { currentFilter.setValue(filterRadius * 200, forKey: kCIInputRadiusKey) }
         if inputKeys.contains(kCIInputScaleKey) { currentFilter.setValue(filterScale * 10, forKey: kCIInputScaleKey) }
-
+        
         guard let outputImage = currentFilter.outputImage else { return }
-
+        
         if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
             let uiImage = UIImage(cgImage: cgimg)
             image = Image(uiImage: uiImage)
