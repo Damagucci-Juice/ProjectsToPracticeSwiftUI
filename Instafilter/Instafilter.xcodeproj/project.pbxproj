@@ -11,6 +11,7 @@
 		BE69FA342A32238500D75D1E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE69FA332A32238500D75D1E /* ContentView.swift */; };
 		BE69FA362A32238600D75D1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE69FA352A32238600D75D1E /* Assets.xcassets */; };
 		BE69FA392A32238600D75D1E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE69FA382A32238600D75D1E /* Preview Assets.xcassets */; };
+		BEE543AB2A3ABF7100F5E6BF /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE543AA2A3ABF7100F5E6BF /* ImageSaver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		BE69FA332A32238500D75D1E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BE69FA352A32238600D75D1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE69FA382A32238600D75D1E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		BEE543AA2A3ABF7100F5E6BF /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				BE69FA312A32238500D75D1E /* InstafilterApp.swift */,
 				BE69FA332A32238500D75D1E /* ContentView.swift */,
+				BEE543AA2A3ABF7100F5E6BF /* ImageSaver.swift */,
 				BE69FA352A32238600D75D1E /* Assets.xcassets */,
 				BE69FA372A32238600D75D1E /* Preview Content */,
 			);
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE69FA342A32238500D75D1E /* ContentView.swift in Sources */,
+				BEE543AB2A3ABF7100F5E6BF /* ImageSaver.swift in Sources */,
 				BE69FA322A32238500D75D1E /* InstafilterApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +274,7 @@
 				DEVELOPMENT_TEAM = D7F6ZDDCV9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save the filtered photo.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +304,7 @@
 				DEVELOPMENT_TEAM = D7F6ZDDCV9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save the filtered photo.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
