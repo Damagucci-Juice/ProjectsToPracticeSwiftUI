@@ -48,6 +48,7 @@ struct ContentView: View {
                     Button("Change Filter", action: changeFilter)
                     Spacer()
                     Button("Save", action: save)
+                        .disabled(image == nil)
                 }
                 .confirmationDialog("Select a filter", isPresented: $showingFilterSheet) {
                     Button("Crystallize") { setFilter(CIFilter.crystallize()) }
