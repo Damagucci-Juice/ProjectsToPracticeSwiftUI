@@ -14,6 +14,8 @@
 		BEE543C72A3C3AB800F5E6BF /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE543C62A3C3AB800F5E6BF /* Location.swift */; };
 		BEE543C92A3C3FDB00F5E6BF /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE543C82A3C3FDB00F5E6BF /* EditView.swift */; };
 		BEE543CB2A3C487E00F5E6BF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE543CA2A3C487E00F5E6BF /* Result.swift */; };
+		BEE543CD2A3C4E0B00F5E6BF /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE543CC2A3C4E0B00F5E6BF /* ContentView-ViewModel.swift */; };
+		BEE543CF2A3C4F6D00F5E6BF /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE543CE2A3C4F6D00F5E6BF /* FileManager+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		BEE543C62A3C3AB800F5E6BF /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BEE543C82A3C3FDB00F5E6BF /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		BEE543CA2A3C487E00F5E6BF /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		BEE543CC2A3C4E0B00F5E6BF /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
+		BEE543CE2A3C4F6D00F5E6BF /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 			children = (
 				BEE543B82A3B264F00F5E6BF /* BucketListApp.swift */,
 				BEE543BA2A3B264F00F5E6BF /* ContentView.swift */,
+				BEE543CE2A3C4F6D00F5E6BF /* FileManager+Extension.swift */,
+				BEE543CC2A3C4E0B00F5E6BF /* ContentView-ViewModel.swift */,
 				BEE543CA2A3C487E00F5E6BF /* Result.swift */,
 				BEE543C62A3C3AB800F5E6BF /* Location.swift */,
 				BEE543C82A3C3FDB00F5E6BF /* EditView.swift */,
@@ -147,9 +153,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BEE543BB2A3B264F00F5E6BF /* ContentView.swift in Sources */,
+				BEE543CD2A3C4E0B00F5E6BF /* ContentView-ViewModel.swift in Sources */,
 				BEE543CB2A3C487E00F5E6BF /* Result.swift in Sources */,
 				BEE543C72A3C3AB800F5E6BF /* Location.swift in Sources */,
 				BEE543C92A3C3FDB00F5E6BF /* EditView.swift in Sources */,
+				BEE543CF2A3C4F6D00F5E6BF /* FileManager+Extension.swift in Sources */,
 				BEE543B92A3B264F00F5E6BF /* BucketListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
