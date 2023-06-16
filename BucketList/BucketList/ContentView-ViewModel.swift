@@ -7,6 +7,7 @@
 
 import MapKit
 import SwiftUI
+import LocalAuthentication
 
 extension ContentView {
     
@@ -15,6 +16,7 @@ extension ContentView {
         @Published var mapRegion = MKCoordinateRegion(center: .init(latitude: 50, longitude: 0), span: .init(latitudeDelta: 25, longitudeDelta: 25))
         @Published private(set) var locations: [Location]
         @Published var selectedPlace: Location?
+        @Published var isUnlocked = false
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
         
         init() {
@@ -45,6 +47,28 @@ extension ContentView {
             } catch {
                 print("Unable to svae data")
             }
+        }
+        
+        func authenticate() {
+            let context = LAContext()
+            var error: NSError?
+            
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                let reason = "Please authenticate yourself to unlock your places."
+                
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                    if success {
+                        Task { @MainActor in
+                            self.isUnlocked = true
+                        }
+                    } else {
+                        // error
+                    }
+                }
+            } else {
+                // no biometrics
+            }
+            
         }
     }
 }
