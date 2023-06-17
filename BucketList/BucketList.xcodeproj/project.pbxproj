@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BEE3E2852A3D9B96005EADD1 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE3E2842A3D9B96005EADD1 /* LocationFetcher.swift */; };
 		BEE543B92A3B264F00F5E6BF /* BucketListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE543B82A3B264F00F5E6BF /* BucketListApp.swift */; };
 		BEE543BB2A3B264F00F5E6BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE543BA2A3B264F00F5E6BF /* ContentView.swift */; };
 		BEE543BD2A3B265000F5E6BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEE543BC2A3B265000F5E6BF /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BEE3E2842A3D9B96005EADD1 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 		BEE543B52A3B264F00F5E6BF /* BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEE543B82A3B264F00F5E6BF /* BucketListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListApp.swift; sourceTree = "<group>"; };
 		BEE543BA2A3B264F00F5E6BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				BEE543BA2A3B264F00F5E6BF /* ContentView.swift */,
 				BEE543CE2A3C4F6D00F5E6BF /* FileManager+Extension.swift */,
 				BEE543CC2A3C4E0B00F5E6BF /* ContentView-ViewModel.swift */,
+				BEE3E2842A3D9B96005EADD1 /* LocationFetcher.swift */,
 				BEE543CA2A3C487E00F5E6BF /* Result.swift */,
 				BEE543C62A3C3AB800F5E6BF /* Location.swift */,
 				BEE543C82A3C3FDB00F5E6BF /* EditView.swift */,
@@ -163,6 +166,7 @@
 				BEE543D12A3D64B000F5E6BF /* EditView-ViewModel.swift in Sources */,
 				BEE543CF2A3C4F6D00F5E6BF /* FileManager+Extension.swift in Sources */,
 				BEE543B92A3B264F00F5E6BF /* BucketListApp.swift in Sources */,
+				BEE3E2852A3D9B96005EADD1 /* LocationFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +299,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Let me know your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -325,6 +330,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Let me know your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

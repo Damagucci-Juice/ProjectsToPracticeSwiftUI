@@ -34,6 +34,14 @@ struct ContentView: View {
                     }
                 }
                 .ignoresSafeArea()
+                .onAppear {
+                    viewModel.locationFetcher.start()
+                }
+                .onTapGesture {
+                    viewModel.getUserCurrentLocation()
+                }
+                
+                
                 Circle()
                     .fill(.blue)
                     .opacity(0.3)

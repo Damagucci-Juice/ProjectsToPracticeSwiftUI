@@ -11,7 +11,7 @@ import LocalAuthentication
 
 extension ContentView {
     
-    @MainActor
+//    @MainActor
     class ViewModel: ObservableObject {
         @Published var mapRegion = MKCoordinateRegion(center: .init(latitude: 50, longitude: 0), span: .init(latitudeDelta: 25, longitudeDelta: 25))
         @Published private(set) var locations: [Location]
@@ -20,6 +20,7 @@ extension ContentView {
         @Published var onError = false
         @Published var noBiometry = false
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
+        let locationFetcher = LocationFetcher()
         
         init() {
             do {
@@ -79,6 +80,17 @@ extension ContentView {
                 }
             }
             
+        }
+        
+        func getUserCurrentLocation() {
+//            self.locationFetcher.start()
+        
+            if let location = self.locationFetcher.lastKnownLocation {
+                mapRegion = MKCoordinateRegion(center: location, span: .init(latitudeDelta: 25, longitudeDelta: 25))
+                print("location updated")
+            } else {
+                print("not location yet")
+            }
         }
     }
 }
