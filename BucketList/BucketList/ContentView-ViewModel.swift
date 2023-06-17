@@ -36,10 +36,10 @@ extension ContentView {
             save()
         }
         
-        func update(location: Location) {
+        func update(newLocation: Location) {
             guard let selectedPlace else { return }
             if let index = locations.firstIndex(of: selectedPlace) {
-                locations[index] = location
+                locations[index] = newLocation
                 save()
             }
         }

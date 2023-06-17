@@ -70,7 +70,7 @@ struct ContentView: View {
         .alert("There is no biometry", isPresented: $viewModel.noBiometry) { }
         .sheet(item: $viewModel.selectedPlace) { place in
             EditView(location: place) {
-                viewModel.update(location: $0)
+                viewModel.update(newLocation: $0)
             }
         }
     }
