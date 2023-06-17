@@ -66,6 +66,8 @@ struct ContentView: View {
                 .clipShape(Capsule())
             }
         }
+        .alert("FaceID failed", isPresented: $viewModel.onError) { }
+        .alert("There is no biometry", isPresented: $viewModel.noBiometry) { }
         .sheet(item: $viewModel.selectedPlace) { place in
             EditView(location: place) {
                 viewModel.update(location: $0)

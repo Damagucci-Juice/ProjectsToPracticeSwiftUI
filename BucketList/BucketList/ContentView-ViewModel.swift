@@ -17,6 +17,8 @@ extension ContentView {
         @Published private(set) var locations: [Location]
         @Published var selectedPlace: Location?
         @Published var isUnlocked = false
+        @Published var onError = false
+        @Published var noBiometry = false
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
         
         init() {
@@ -65,10 +67,16 @@ extension ContentView {
                         }
                     } else {
                         // error
+                        Task { @MainActor in
+                            self.onError = true
+                        }
                     }
                 }
             } else {
                 // no biometrics
+                Task { @MainActor in
+                    self.noBiometry = true 
+                }
             }
             
         }
