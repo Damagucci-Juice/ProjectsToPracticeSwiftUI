@@ -25,15 +25,18 @@ struct ContentView: View {
     @State private var selectedPicture = Int.random(in: 0...3)
 
     var body: some View {
-        Image(pictures[selectedPicture])
-            .resizable()
-            .scaledToFit()
-            .accessibilityLabel(labels[selectedPicture])
-            .accessibilityAddTraits(.isButton)
-            .onTapGesture {
-                selectedPicture = Int.random(in: 0...3)
+        ZStack {
+            Image(decorative: pictures[selectedPicture])
+                .accessibilityHidden(true)
+            
+            VStack {
+                Text("Your score is")
+                Text("1000")
+                    .font(.title)
             }
-
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Your score is 1000")
+        }
     }
 }
 
