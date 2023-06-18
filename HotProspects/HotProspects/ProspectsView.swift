@@ -16,6 +16,17 @@ struct ProspectsView: View {
     
     let filter: FilterType
     
+    var filteredProspects: [Prospect] {
+        switch filter {
+        case .none:
+            return prospects.people
+        case .contacted:
+            return prospects.people.filter { $0.isContacted }
+        case .uncontacted:
+            return prospects.people.filter { !$0.isContacted }
+        }
+    }
+    
     var title: String {
         switch filter {
         case .none:
@@ -29,18 +40,17 @@ struct ProspectsView: View {
     
     var body: some View {
         NavigationView {
-            Text("People: \(prospects.people.count)")
-                .navigationTitle(title)
-                .toolbar {
-                    Button {
-                        let prospect = Prospect()
-                        prospect.name = "Gucci"
-                        prospect.emailAddress = "jsr9874@gmail.com"
-                        prospects.people.append(prospect)
-                    } label: {
-                        Label("Scan", systemImage: "qrcode.viewfinder")
+            List {
+                ForEach(filteredProspects) { prospect in
+                    VStack {
+                        Text(prospect.name)
+                            .font(.headline)
+                        Text(prospect.emailAddress)
+                            .foregroundColor(.secondary)
                     }
                 }
+            }
+            .navigationTitle(title)
         }
     }
 }
