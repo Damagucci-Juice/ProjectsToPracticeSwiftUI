@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import CodeScanner
 
 struct ProspectsView: View {
     @EnvironmentObject var prospects: Prospects
-    
+    @State private var isShowingScanner = false
+
     enum FilterType {
         case none, contacted, uncontacted
     }
@@ -50,7 +52,35 @@ struct ProspectsView: View {
                     }
                 }
             }
+            .toolbar {
+                Button {
+                    isShowingScanner = true
+                } label: {
+                    Image(systemName: "qrcode.viewfinder")
+                }
+            }
+            .sheet(isPresented: $isShowingScanner) {
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
+            }
             .navigationTitle(title)
+        }
+    }
+    
+    func handleScan(result: Result<ScanResult, ScanError>) {
+       isShowingScanner = false
+       
+        switch result {
+        case .success(let result):
+            let details = result.string.components(separatedBy: "\n")
+            guard details.count == 2 else { return }
+
+            let person = Prospect()
+            person.name = details[0]
+            person.emailAddress = details[1]
+
+            prospects.people.append(person)
+        case .failure(let error):
+            print("Scanning failed: \(error.localizedDescription)")
         }
     }
 }
