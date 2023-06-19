@@ -95,7 +95,7 @@ struct ProspectsView: View {
             person.name = details[0]
             person.emailAddress = details[1]
 
-            prospects.people.append(person)
+            prospects.add(prospect: person)
         case .failure(let error):
             print("Scanning failed: \(error.localizedDescription)")
         }
