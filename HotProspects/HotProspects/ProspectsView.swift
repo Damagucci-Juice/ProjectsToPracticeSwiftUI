@@ -12,6 +12,7 @@ import UserNotifications
 struct ProspectsView: View {
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
+    @State private var isShowingDialog = false
 
     enum FilterType {
         case none, contacted, uncontacted
@@ -45,11 +46,21 @@ struct ProspectsView: View {
         NavigationView {
             List {
                 ForEach(filteredProspects) { prospect in
-                    VStack {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
+                    HStack {
+                        if filter == .none {
+                            Image(systemName: "checkmark.circle")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .scaledToFit()
+                                .foregroundColor(prospect.isContacted ? .green : .gray)
+                        }
+                        
+                        VStack {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     .swipeActions {
                         if prospect.isContacted {
@@ -83,12 +94,29 @@ struct ProspectsView: View {
                 } label: {
                     Image(systemName: "qrcode.viewfinder")
                 }
+                Button {
+                    isShowingDialog = true
+                } label: {
+                    Image(systemName: "line.3.horizontal.decrease")
+                }
             }
             .sheet(isPresented: $isShowingScanner) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "Paul Hudson\npaul@hackingwithswift.com", completion: handleScan)
             }
+            .confirmationDialog("sorting prospects", isPresented: $isShowingDialog) {
+                Button("name", action: sortProspectsByName)
+                Button("added", action: sortProspectsByDate)
+            }
             .navigationTitle(title)
         }
+    }
+    
+    private func sortProspectsByName() {
+        prospects.sortByName()
+    }
+    
+    private func sortProspectsByDate() {
+        prospects.sortByDate()
     }
     
     func handleScan(result: Result<ScanResult, ScanError>) {
