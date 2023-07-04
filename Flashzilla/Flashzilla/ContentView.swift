@@ -9,25 +9,27 @@ import SwiftUI
 import CoreHaptics
 
 struct ContentView: View {
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State private var counter = 0
+    @Environment(\.accessibilityReduceTransparency) var reduceTransparency
 
     var body: some View {
         Text("Hello, World!")
-            .onReceive(timer) { time in
-                if counter == 5 {
-                    timer.upstream.connect().cancel()
-                } else {
-                    print("The time is now \(time)")
-                }
-
-                counter += 1
-            }
+            .padding()
+            .background(reduceTransparency ? .black : .black.opacity(0.5))
+            .foregroundColor(.white)
+            .clipShape(Capsule())
     }
-}
+}g
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+func withOptionalAnimation<Result>(_ animation: Animation? = .default, _ body: () throws -> Result) rethrows -> Result {
+    if UIAccessibility.isReduceMotionEnabled {
+        return try body()
+    } else {
+        return try withAnimation(animation, body)
     }
 }
