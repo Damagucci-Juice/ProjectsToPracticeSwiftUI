@@ -18,7 +18,7 @@ struct ContentView: View {
             .foregroundColor(.white)
             .clipShape(Capsule())
     }
-}g
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
