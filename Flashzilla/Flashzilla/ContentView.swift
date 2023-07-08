@@ -40,26 +40,36 @@ struct ContentView: View {
                         }
                         .stacked(at: index, in: cards.count)
                     }
-                    if differentiateWithoutColor {
-                        VStack {
-                            Spacer()
-                            
-                            HStack {
-                                Image(systemName: "xmark.circle")
-                                    .padding()
-                                    .background(.black.opacity(0.7))
-                                    .clipShape(Circle())
-                                Spacer()
-                                Image(systemName: "checkmark.circle")
-                                    .padding()
-                                    .background(.black.opacity(0.7))
-                                    .clipShape(Circle())
-                            }
-                            .foregroundColor(.white)
-                            .font(.largeTitle)
+                }
+                .allowsHitTesting(timeRemaining > 0)
+                
+                if cards.isEmpty {
+                    Button("Start Again", action: resetCards)
+                        .padding()
+                        .background(.white)
+                        .foregroundColor(.black)
+                        .clipShape(Capsule())
+                }
+            }
+            
+            if differentiateWithoutColor {
+                VStack {
+                    Spacer()
+                    
+                    HStack {
+                        Image(systemName: "xmark.circle")
                             .padding()
-                        }
+                            .background(.black.opacity(0.7))
+                            .clipShape(Circle())
+                        Spacer()
+                        Image(systemName: "checkmark.circle")
+                            .padding()
+                            .background(.black.opacity(0.7))
+                            .clipShape(Circle())
                     }
+                    .foregroundColor(.white)
+                    .font(.largeTitle)
+                    .padding()
                 }
             }
         }
@@ -71,13 +81,28 @@ struct ContentView: View {
             }
         }
         .onChange(of: scenePhase) { newValue in
-            isActive = newValue == .active
+            if newValue == .active {
+                if !cards.isEmpty {
+                    isActive = true
+                }
+            } else {
+                isActive = false
+            }
         }
         
     }
     
+    func resetCards() {
+            cards = [Card](repeating: Card.example, count: 10)
+            timeRemaining = 100
+            isActive = true
+    }
+    
     func removeCard(at index: Int) {
         cards.remove(at: index)
+        if cards.isEmpty {
+            isActive = false
+        }
     }
 }
 
