@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var cards = [Card](repeating: .example, count: 10)
+    @State private var cards = [Card]()
     @State private var timeRemaining = 100
     @State private var isActive = true
+    @State private var showingEditScreen = false
+    
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
-
+    
     @Environment(\.scenePhase) var scenePhase
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
+    
     var body: some View {
         ZStack {
             Image(decorative: "background")
@@ -55,6 +57,26 @@ struct ContentView: View {
                         .clipShape(Capsule())
                 }
             }
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        showingEditScreen = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .padding()
+                            .background(.black.opacity(0.7))
+                            .clipShape(Circle())
+                    }
+                }
+                
+                Spacer()
+            }
+            .foregroundColor(.white)
+            .font(.largeTitle)
+            .padding()
             
             if differentiateWithoutColor || voiceOverEnabled {
                 VStack {
@@ -110,13 +132,15 @@ struct ContentView: View {
                 isActive = false
             }
         }
+        .sheet(isPresented: $showingEditScreen, onDismiss: resetCards, content: EditCardView.init)
+        .onAppear(perform: resetCards)
         
     }
     
     func resetCards() {
-            cards = [Card](repeating: Card.example, count: 10)
-            timeRemaining = 100
-            isActive = true
+        timeRemaining = 100
+        isActive = true
+        loadData()
     }
     
     func removeCard(at index: Int) {
@@ -125,6 +149,14 @@ struct ContentView: View {
         cards.remove(at: index)
         if cards.isEmpty {
             isActive = false
+        }
+    }
+    
+    private func loadData() {
+        if let data = UserDefaults.standard.data(forKey: "Cards") {
+            if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
+                cards = decoded
+            }
         }
     }
 }

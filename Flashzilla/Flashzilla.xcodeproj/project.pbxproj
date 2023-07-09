@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE330BC22A5AA0A200D09BD9 /* EditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE330BC12A5AA0A200D09BD9 /* EditCardView.swift */; };
 		BEB5B74D2A57E12100BA90E2 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB5B74C2A57E12100BA90E2 /* CardView.swift */; };
 		BEB5B74F2A57E12C00BA90E2 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB5B74E2A57E12C00BA90E2 /* Card.swift */; };
 		BEF32C3D2A45895F00DD5FF4 /* FlashzillaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF32C3C2A45895F00DD5FF4 /* FlashzillaApp.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE330BC12A5AA0A200D09BD9 /* EditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardView.swift; sourceTree = "<group>"; };
 		BEB5B74C2A57E12100BA90E2 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		BEB5B74E2A57E12C00BA90E2 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		BEF32C392A45895F00DD5FF4 /* Flashzilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashzilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 				BEF32C3E2A45895F00DD5FF4 /* ContentView.swift */,
 				BEB5B74C2A57E12100BA90E2 /* CardView.swift */,
 				BEB5B74E2A57E12C00BA90E2 /* Card.swift */,
+				BE330BC12A5AA0A200D09BD9 /* EditCardView.swift */,
 				BEF32C402A45896000DD5FF4 /* Assets.xcassets */,
 				BEF32C422A45896000DD5FF4 /* Preview Content */,
 			);
@@ -145,6 +148,7 @@
 			files = (
 				BEF32C3F2A45895F00DD5FF4 /* ContentView.swift in Sources */,
 				BEB5B74D2A57E12100BA90E2 /* CardView.swift in Sources */,
+				BE330BC22A5AA0A200D09BD9 /* EditCardView.swift in Sources */,
 				BEF32C3D2A45895F00DD5FF4 /* FlashzillaApp.swift in Sources */,
 				BEB5B74F2A57E12C00BA90E2 /* Card.swift in Sources */,
 			);
