@@ -146,7 +146,9 @@ struct ContentView: View {
     func resetCards() {
         timeRemaining = 100
         isActive = true
-        loadData()
+        if let loaded: [Card] = loadData() {
+            cards = loaded
+        }
     }
     
     func removeCard(at index: Int) {
@@ -163,12 +165,11 @@ struct ContentView: View {
         cards.append(newCard)
     }
     
-    private func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "Cards") {
-            if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
-                cards = decoded
-            }
-        }
+    private func loadData<T: Codable>() -> T? {
+        guard let url = try? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(filePath),
+              let loaded = try? Data(contentsOf: url) else { return nil }
+        return try? JSONDecoder().decode(T.self, from: loaded)
+
     }
 }
 

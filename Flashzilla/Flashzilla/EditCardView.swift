@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+public let filePath = "CardsInfo.json"
+
 struct EditCardView: View {
     @Environment(\.dismiss) var dismiss
     @State private var cards = [Card]()
@@ -50,7 +52,11 @@ struct EditCardView: View {
                 Button("Done", action: done)
             }
             .listStyle(.grouped)
-            .onAppear(perform: loadData)
+            .onAppear {
+                if let loaded: [Card] = loadData() {
+                    cards = loaded
+                }
+            }
         }
     }
     
@@ -73,18 +79,19 @@ struct EditCardView: View {
         saveData()
     }
     
-    private func loadData() {
-        if let data = UserDefaults.standard.data(forKey: "Cards") {
-            if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
-                cards = decoded
-            }
-        }
+    //TODO: - User Defaults -> JSON Documents
+    private func loadData<T: Codable>() -> T? {
+        guard let url = try? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(filePath),
+              let loaded = try? Data(contentsOf: url) else { return nil }
+        return try? JSONDecoder().decode(T.self, from: loaded)
+
     }
     
     private func saveData() {
-        if let data = try? JSONEncoder().encode(cards) {
-            UserDefaults.standard.set(data, forKey: "Cards")
-        }
+        guard let url = try? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(filePath) else { return }
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        try? encoder.encode(cards).write(to: url)
     }
     
     private func done() {
