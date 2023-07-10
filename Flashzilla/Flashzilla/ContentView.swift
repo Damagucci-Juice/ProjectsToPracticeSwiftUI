@@ -36,15 +36,21 @@ struct ContentView: View {
                     .clipShape(Capsule())
                 
                 ZStack {
-                    ForEach(0..<cards.count, id: \.self) { index in
-                        CardView(card: cards[index]) {
-                            withAnimation {
-                                removeCard(at: index)
+                    ForEach(cards) { card in
+                        if let index = cards.firstIndex(where: {$0.id == card.id}) {
+                            CardView(card: card) { isIncorrect in
+                                withAnimation {
+                                    let card = card
+                                    if isIncorrect {
+                                        addCard(card)
+                                    }
+                                    removeCard(at: index)
+                                }
                             }
+                            .stacked(at: index, in: cards.count)
+                            .allowsHitTesting(index == cards.count-1)
+                            .accessibilityHidden(index < cards.count - 1)
                         }
-                        .stacked(at: index, in: cards.count)
-                        .allowsHitTesting(index == cards.count-1)
-                        .accessibilityHidden(index < cards.count - 1)
                     }
                 }
                 .allowsHitTesting(timeRemaining > 0)
@@ -134,7 +140,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showingEditScreen, onDismiss: resetCards, content: EditCardView.init)
         .onAppear(perform: resetCards)
-        
+        .persistentSystemOverlays(.hidden)
     }
     
     func resetCards() {
@@ -150,6 +156,11 @@ struct ContentView: View {
         if cards.isEmpty {
             isActive = false
         }
+    }
+    
+    func addCard(_ card: Card) {
+        let newCard = Card(prompt: card.prompt, answer: card.answer)
+        cards.append(newCard)
     }
     
     private func loadData() {

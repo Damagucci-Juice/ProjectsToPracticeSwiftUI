@@ -12,7 +12,7 @@ struct EditCardView: View {
     @State private var cards = [Card]()
     @State private var newPrompt = ""
     @State private var newAnswer = ""
-    private var isAddCardEnabled: Bool {
+    private var hasContentsTwoTextField: Bool {
         return !trimmedAnswer.isEmpty && !trimmedPrompt.isEmpty
     }
     private var trimmedPrompt: String {
@@ -29,8 +29,8 @@ struct EditCardView: View {
                     TextField("Prompt", text: $newPrompt)
                     TextField("Answer", text: $newAnswer)
                     Button("Add card", action: addCard)
-                        .disabled(isAddCardEnabled)
-                        .foregroundColor(isAddCardEnabled ? Color.blue : .gray)
+                        .disabled(!hasContentsTwoTextField)
+                        .foregroundColor(hasContentsTwoTextField ? Color.blue : .gray)
                 }
                 
                 Section {
@@ -55,7 +55,7 @@ struct EditCardView: View {
     }
     
     private func addCard() {
-        guard isAddCardEnabled else { return }
+        guard hasContentsTwoTextField else { return }
         
         let card = Card(prompt: trimmedPrompt, answer: trimmedAnswer)
         cards.insert(card, at: 0)
