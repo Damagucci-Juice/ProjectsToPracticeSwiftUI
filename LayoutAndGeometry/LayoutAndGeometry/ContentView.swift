@@ -9,13 +9,22 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        HStack(alignment: .midAccountAndName) {
+            VStack {
+                Text("@twostraws")
+                    .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center] }
+                Image("paul-hudson")
+                    .resizable()
+                    .frame(width: 64, height: 64)
+            }
+
+            VStack {
+                Text("Full name:")
+                Text("PAUL HUDSON")
+                    .alignmentGuide(.midAccountAndName) { d in d[VerticalAlignment.center] }
+                    .font(.largeTitle)
+            }
         }
-        .padding()
     }
 }
 
@@ -23,4 +32,14 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+extension VerticalAlignment {
+    struct MidAccountAndName: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            d[.top]
+        }
+    }
+
+    static let midAccountAndName = VerticalAlignment(MidAccountAndName.self)
 }
