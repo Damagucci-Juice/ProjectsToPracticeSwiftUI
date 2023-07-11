@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-public let filePath = "CardsInfo.json"
-
 struct EditCardView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var cards = [Card]()
+    @EnvironmentObject var deck: CardDeck
     @State private var newPrompt = ""
     @State private var newAnswer = ""
     private var hasContentsTwoTextField: Bool {
@@ -36,11 +34,11 @@ struct EditCardView: View {
                 }
                 
                 Section {
-                    ForEach(0..<cards.count, id: \.self) { index in
+                    ForEach(0..<deck.cards.count, id: \.self) { index in
                         VStack(alignment: .leading) {
-                            Text(cards[index].prompt)
+                            Text(deck.cards[index].prompt)
                                 .font(.headline)
-                            Text(cards[index].answer)
+                            Text(deck.cards[index].answer)
                                 .foregroundColor(.secondary)
                         }
                     }
@@ -53,9 +51,7 @@ struct EditCardView: View {
             }
             .listStyle(.grouped)
             .onAppear {
-                if let loaded: [Card] = loadData() {
-                    cards = loaded
-                }
+                deck.resetCards()
             }
         }
     }
@@ -63,9 +59,8 @@ struct EditCardView: View {
     private func addCard() {
         guard hasContentsTwoTextField else { return }
         
-        let card = Card(prompt: trimmedPrompt, answer: trimmedAnswer)
-        cards.insert(card, at: 0)
-        saveData()
+        let newCard = Card(prompt: trimmedPrompt, answer: trimmedAnswer)
+        deck.addCard(newCard)
         clearTextField()
     }
     
@@ -75,23 +70,7 @@ struct EditCardView: View {
     }
     
     private func removeCards(at offsets: IndexSet) {
-        cards.remove(atOffsets: offsets)
-        saveData()
-    }
-    
-    //TODO: - User Defaults -> JSON Documents
-    private func loadData<T: Codable>() -> T? {
-        guard let url = try? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(filePath),
-              let loaded = try? Data(contentsOf: url) else { return nil }
-        return try? JSONDecoder().decode(T.self, from: loaded)
-
-    }
-    
-    private func saveData() {
-        guard let url = try? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(filePath) else { return }
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        try? encoder.encode(cards).write(to: url)
+        deck.removeCard(at: offsets)
     }
     
     private func done() {
@@ -100,7 +79,10 @@ struct EditCardView: View {
 }
 
 struct EditCardView_Previews: PreviewProvider {
+    static let deck = CardDeck()
+    
     static var previews: some View {
         EditCardView()
+            .environmentObject(deck)
     }
 }

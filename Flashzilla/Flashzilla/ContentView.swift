@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var cards = [Card]()
     @State private var timeRemaining = 100
     @State private var isActive = true
     @State private var showingEditScreen = false
-    
+    @EnvironmentObject var deck: CardDeck
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
-    
     @Environment(\.scenePhase) var scenePhase
     
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         ZStack {
@@ -36,8 +34,8 @@ struct ContentView: View {
                     .clipShape(Capsule())
                 
                 ZStack {
-                    ForEach(cards) { card in
-                        if let index = cards.firstIndex(where: {$0.id == card.id}) {
+                    ForEach(deck.cards) { card in
+                        if let index = deck.cards.firstIndex(where: {$0.id == card.id}) {
                             CardView(card: card) { isIncorrect in
                                 withAnimation {
                                     let card = card
@@ -47,15 +45,15 @@ struct ContentView: View {
                                     removeCard(at: index)
                                 }
                             }
-                            .stacked(at: index, in: cards.count)
-                            .allowsHitTesting(index == cards.count-1)
-                            .accessibilityHidden(index < cards.count - 1)
+                            .stacked(at: index, in: deck.cards.count)
+                            .allowsHitTesting(index == deck.cards.count-1)
+                            .accessibilityHidden(index < deck.cards.count - 1)
                         }
                     }
                 }
                 .allowsHitTesting(timeRemaining > 0)
                 
-                if cards.isEmpty {
+                if deck.cards.isEmpty {
                     Button("Start Again", action: resetCards)
                         .padding()
                         .background(.white)
@@ -91,7 +89,7 @@ struct ContentView: View {
                     HStack {
                         Button {
                             withAnimation {
-                                removeCard(at: cards.count - 1)
+                                removeCard(at: deck.cards.count - 1)
                             }
                         } label: {
                             Image(systemName: "xmark.circle")
@@ -105,7 +103,7 @@ struct ContentView: View {
                         Spacer()
                         Button {
                             withAnimation {
-                                removeCard(at: cards.count - 1)
+                                removeCard(at: deck.cards.count - 1)
                             }
                         } label: {
                             Image(systemName: "checkmark.circle")
@@ -131,7 +129,7 @@ struct ContentView: View {
         }
         .onChange(of: scenePhase) { newValue in
             if newValue == .active {
-                if !cards.isEmpty {
+                if !deck.cards.isEmpty {
                     isActive = true
                 }
             } else {
@@ -143,47 +141,34 @@ struct ContentView: View {
         .persistentSystemOverlays(.hidden)
     }
     
-    func resetCards() {
+    private func resetCards() {
         timeRemaining = 100
         isActive = true
-        if let loaded: [Card] = loadData() {
-            cards = loaded
-        }
+        deck.resetCards()
     }
     
-    func removeCard(at index: Int) {
+    private func removeCard(at index: Int) {
         guard index >= 0 else { return }
         
-        cards.remove(at: index)
-        if cards.isEmpty {
+        deck.removeCard(at: index)
+        if deck.cards.isEmpty {
             isActive = false
         }
     }
     
-    func addCard(_ card: Card) {
+    private func addCard(_ card: Card) {
         let newCard = Card(prompt: card.prompt, answer: card.answer)
-        cards.append(newCard)
-    }
-    
-    private func loadData<T: Codable>() -> T? {
-        guard let url = try? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(filePath),
-              let loaded = try? Data(contentsOf: url) else { return nil }
-        return try? JSONDecoder().decode(T.self, from: loaded)
-
+        deck.addCard(newCard)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
+    static let deck = CardDeck()
+    
     static var previews: some View {
         ContentView()
             .previewInterfaceOrientation(.landscapeRight)
-    }
-}
-
-extension View {
-    func stacked(at position: Int, in total: Int) -> some View {
-        let offset = Double(total - position)
-        return self.offset(x: 0, y: offset * 10)
+            .environmentObject(deck)
     }
 }
 

@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct FlashzillaApp: App {
+    @StateObject var cardDeck = CardDeck()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(cardDeck)
         }
     }
 }
