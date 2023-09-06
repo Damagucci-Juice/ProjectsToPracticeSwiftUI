@@ -86,7 +86,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 extension ContentView {
-    // TODO: - 저장을 함에 동시에, 업데이트도 같이 하는게 좋음
+    // TODO: - 저장을 함에 동시에, 업데이트도 같이 하는게 좋음, Repository 방식으로 그냥 빼는 것도 좋아 보임
     private func rollTheDice() {
         let rolledResult = Int.random(in: 1...diceSort)
         
